@@ -4,7 +4,8 @@ var weekly_quakes_endpoint = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/s
 $(document).on("ready", function() {
    $.ajax( {
     method: "GET",
-    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson" , 
+    // url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson" , 
+    url: weekly_quakes_endpoint,
     dataType: "json",
     success: onSuccess
   });   // ajax
