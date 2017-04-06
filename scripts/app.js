@@ -25,20 +25,24 @@ function onSuccess(responseData) {
 		arrLatLong['lng'] = output[index].geometry.coordinates[0];
 		coord.push(arrLatLong) ;
 	})   // output.forEach
+	// call maps inside 'forEach' so can send array of coodinates to 'marker' function
+	google.maps.event.addDomListener(window, 'load', initMap(coord));
 } // onSuccess
 
 var sfLatLng = {lat: 37.78, lng: -122.44};
-function initMap() {
+
+function initMap(pinLatLng) {
 	var map = new google.maps.Map(document.getElementById('map'), {
 	  center: sfLatLng,
-	  zoom: 8
+	  zoom: 1 //  see all pins from space
 	});  // google.maps
 
- 	var marker = new google.maps.Marker({
-      position: sfLatLng,
-      map: map,
-      title: 'Hello World!'
-	});   // marker
+	for (i =0; i < pinLatLng.length; i ++) {
+	 	var marker = new google.maps.Marker({
+	      position: pinLatLng[i],
+	      map: map,
+	      title: 'Hello World! + pinLatLng[i]'
+		});   // marker
+	} // for loop
 }    // initMap
-google.maps.event.addDomListener(window, 'load', initMap);
-// }
+
